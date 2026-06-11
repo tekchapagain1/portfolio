@@ -21,6 +21,12 @@ export default function QueryMode({ onRecordQuery }) {
     setExplanation('')
     setPlan(null)
     setLastQuery(sql)
+    const trimmed = sql.trim()
+    if (!/^(SELECT|SHOW|DESCRIBE|DESC)\b/i.test(trimmed)) {
+      setError("Hey, this isn't a full SQL engine \u2014 it only handles SELECT, SHOW TABLES, and DESCRIBE queries on the resume data. Try clicking a suggested query above!")
+      onRecordQuery(0, true)
+      return
+    }
     try {
       const ast = parseQuery(sql)
       const start = performance.now()
@@ -30,18 +36,23 @@ export default function QueryMode({ onRecordQuery }) {
       setPlan(generateQueryPlan(ast, res.rowCount))
       onRecordQuery(parseFloat(res.elapsed), false)
     } catch (err) {
-      setError(err.message)
+      setError("Hmm, that query didn't work. This engine supports SELECT, WHERE, LIKE, GROUP BY, ORDER BY, LIMIT, SHOW TABLES, and DESCRIBE on resume tables. Try a simpler query or pick one from the suggestions above.")
       onRecordQuery(0, true)
     }
   }
 
   function handleExplain(sql) {
-    if (!sql.trim()) return
+    const trimmed = sql.trim()
+    if (!trimmed) return
+    if (!/^(SELECT|SHOW|DESCRIBE|DESC)\b/i.test(trimmed)) {
+      setExplanation("This doesn't look like a supported query. I can only explain SELECT, SHOW TABLES, and DESCRIBE queries.")
+      return
+    }
     try {
       const ast = parseQuery(sql)
       setExplanation(explainQuery(ast))
     } catch (err) {
-      setExplanation(`Could not parse: ${err.message}`)
+      setExplanation("Can't explain that query \u2014 try a valid SELECT with WHERE, GROUP BY, or ORDER BY on resume tables.")
     }
   }
 

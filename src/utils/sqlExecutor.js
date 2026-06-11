@@ -53,6 +53,7 @@ function fieldName(field) {
   if (typeof field === 'string') return field
   if (field.type === 'star') return '*'
   if (field.type === 'field') return field.name
+  if (field.type === 'literal') return field.value
   if (field.type === 'function') {
     const args = field.args.map(a => a.type === 'star' ? '*' : a.name).join(', ')
     return `${field.name}(${args})`
@@ -65,7 +66,8 @@ function projectRow(row, fields) {
   const result = {}
   for (const f of fields) {
     if (f.type === 'star') { Object.assign(result, row); continue }
-    if (f.type === 'field') { result[f.name] = evaluateValue(row, f.name) }
+    if (f.type === 'field') { result[f.name] = evaluateValue(row, f.name); continue }
+    if (f.type === 'literal') { result[f.value] = f.isNumber ? Number(f.value) : f.value; continue }
   }
   return result
 }
@@ -112,6 +114,8 @@ function execAggregation(ast, rows) {
       if (field.type === 'field') {
         const val = evaluateValue(group.rows[0], field.name)
         row[field.name] = val !== undefined ? val : null
+      } else if (field.type === 'literal') {
+        row[field.value] = field.isNumber ? Number(field.value) : field.value
       } else if (field.type === 'function') {
         const values = group.rows.map(r => {
           if (field.args[0].type === 'star') return 1

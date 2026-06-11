@@ -14,7 +14,11 @@ export function explainQuery(ast) {
   if (colFields.length === 0 && funcFields.length === 0) {
     parts.push('Fetch all columns')
   } else {
-    const cols = colFields.map(f => f.type === 'star' ? 'all columns' : `\`${f.name}\``)
+    const cols = colFields.map(f => {
+      if (f.type === 'star') return 'all columns'
+      if (f.type === 'literal') return `\`${f.value}\``
+      return `\`${f.name}\``
+    })
     const funcs = funcFields.map(f => `\`${f.name}(${f.args.map(a => a.type === 'star' ? '*' : a.name).join(',')})\``)
     const all = [...cols, ...funcs]
     parts.push(all.length > 1

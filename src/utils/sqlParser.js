@@ -89,6 +89,12 @@ function parseFields(tokens, pos) {
         fields.push({ type: 'field', name: tok.value })
         pos.i++
       }
+    } else if (tok.type === 'NUMBER') {
+      fields.push({ type: 'literal', value: tok.value, isNumber: true })
+      pos.i++
+    } else if (tok.type === 'STRING') {
+      fields.push({ type: 'literal', value: tok.value })
+      pos.i++
     } else {
       break
     }

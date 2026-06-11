@@ -126,25 +126,7 @@ body {
   font-style: italic;
 }
 
-.hero-subtitle--truncable {
-  cursor: pointer;
-  transition: color 0.15s;
-}
 
-.hero-subtitle--truncable:hover {
-  color: var(--accent-cyan);
-}
-
-.hero-subtitle--expanded {
-  font-style: normal;
-  color: var(--text-primary);
-}
-
-.hero-subtitle-toggle {
-  color: var(--accent-cyan);
-  font-weight: bold;
-  font-size: 0.85rem;
-}
 
 .hero-meta {
   display: flex;
@@ -825,14 +807,10 @@ body {
 .cell-truncated {
   cursor: help;
   border-bottom: 1px dashed var(--text-secondary);
-  position: relative;
 }
 
 .cell-tooltip-popup {
-  position: absolute;
-  bottom: calc(100% + 6px);
-  left: 50%;
-  transform: translateX(-50%);
+  position: fixed;
   background: var(--bg-tertiary);
   color: var(--text-primary);
   border: 1px solid var(--border);
@@ -844,19 +822,10 @@ body {
   max-width: min(80vw, 500px);
   max-height: 300px;
   overflow-y: auto;
-  z-index: 100;
+  z-index: 9999;
   box-shadow: 0 4px 12px rgba(0,0,0,0.4);
   line-height: 1.4;
-}
-
-.cell-tooltip-popup::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 5px solid transparent;
-  border-top-color: var(--border);
+  pointer-events: none;
 }
 
 /* ─── Query Plan ─── */

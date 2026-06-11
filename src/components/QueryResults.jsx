@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import { createPortal } from 'react-dom'
 
 export default function QueryResults({ result, query, plan }) {
   const [copied, setCopied] = useState(false)
@@ -101,15 +102,30 @@ export default function QueryResults({ result, query, plan }) {
 
 function CellTooltip({ text, children }) {
   const [show, setShow] = useState(false)
+  const [pos, setPos] = useState({ x: 0, y: 0 })
+  const spanRef = useRef(null)
+
   return (
-    <span
-      className="cell-truncated"
-      onMouseEnter={() => setShow(true)}
-      onMouseLeave={() => setShow(false)}
-    >
-      {children}
-      {show && <span className="cell-tooltip-popup">{text}</span>}
-    </span>
+    <>
+      <span
+        ref={spanRef}
+        className="cell-truncated"
+        onMouseEnter={(e) => {
+          setPos({ x: e.clientX, y: e.clientY })
+          setShow(true)
+        }}
+        onMouseMove={(e) => setPos({ x: e.clientX, y: e.clientY })}
+        onMouseLeave={() => setShow(false)}
+      >
+        {children}
+      </span>
+      {show && createPortal(
+        <span className="cell-tooltip-popup" style={{ left: pos.x, top: pos.y - 10, transform: 'translate(-50%, -100%)' }}>
+          {text}
+        </span>,
+        document.body
+      )}
+    </>
   )
 }
 

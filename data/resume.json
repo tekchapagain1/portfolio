@@ -1,0 +1,80 @@
+{
+  "profile": {
+    "name": "Tek Prasad Chapagain",
+    "title": "Software Engineer II",
+    "location": "Kathmandu, Nepal",
+    "summary": "Software Engineer II with 3 years of experience in ETL pipeline development, business intelligence reporting, and full-stack web application development using Python and Flask. Experience with data processing systems, compliance requirements, and large-scale data integration. Able to transform raw data into actionable business insights through automated reporting and scalable web applications.",
+    "email": "tekchapagain1@gmail.com",
+    "linkedin": "linkedin.com/in/tekchapagain",
+    "github": "github.com/tekchapagain",
+    "website": "https://tekchapagain.com.np/",
+    "phone": "9863842901"
+  },
+  "skills": [
+    { "skill": "Python", "category": "Programming", "proficiency": "Advanced" },
+    { "skill": "Oracle PL/SQL", "category": "Programming", "proficiency": "Advanced" },
+    { "skill": "SQL", "category": "Programming", "proficiency": "Advanced" },
+    { "skill": "Flask", "category": "Web Framework", "proficiency": "Advanced" },
+    { "skill": "Databricks", "category": "Platform", "proficiency": "Intermediate" },
+    { "skill": "Oracle SQL Developer", "category": "Tools", "proficiency": "Advanced" },
+    { "skill": "Tableau", "category": "Visualization", "proficiency": "Intermediate" },
+    { "skill": "SQL Server Integration Services", "category": "ETL", "proficiency": "Intermediate" },
+    { "skill": "Linux", "category": "Platform", "proficiency": "Advanced" },
+    { "skill": "Git", "category": "DevOps", "proficiency": "Advanced" },
+    { "skill": "Bamboo", "category": "CI/CD", "proficiency": "Intermediate" },
+    { "skill": "Octopus Deploy", "category": "CI/CD", "proficiency": "Intermediate" },
+    { "skill": "Oracle Database", "category": "Database", "proficiency": "Advanced" },
+    { "skill": "HTML/CSS/JavaScript", "category": "Web Development", "proficiency": "Intermediate" }
+  ],
+  "experience": [
+    {
+      "company": "Infinite Computer Solutions",
+      "role": "Software Engineer II",
+      "start_date": "2024-03",
+      "end_date": "Present",
+      "description": "Automated ETL pipelines with Oracle databases and Databricks, enhancing data processing speed and accuracy. Led the implementation of CI/CD pipelines for Python web applications using Bamboo and Octopus Deploy, streamlining deployment processes and improving development efficiency. Collaborated with cross-functional teams to ensure seamless integration of database updates and application features. Currently building ETL workflows on Databricks for large-scale data transformation.",
+      "tech_used": ["Python", "Oracle PL/SQL", "Databricks", "Bamboo", "Octopus Deploy", "Oracle SQL Developer", "Linux", "Git"]
+    },
+    {
+      "company": "Cotiviti",
+      "role": "Software Engineer I",
+      "start_date": "2022-10",
+      "end_date": "2024-02",
+      "description": "Developed robust web applications using Python Flask, enhancing data accessibility, visualization, and providing actionable business insights. Designed and implemented efficient ETL processes with Oracle databases, ensuring seamless data extraction, transformation, and loading for improved data accuracy and processing speed. Leveraged in-depth knowledge of US healthcare systems to tailor solutions addressing industry-specific data management and regulatory requirements. Used Red Hat Linux environment and Git for version control.",
+      "tech_used": ["Python", "Flask", "Oracle PL/SQL", "Oracle SQL Developer", "Linux", "Git"]
+    },
+    {
+      "company": "Cotiviti",
+      "role": "Software Engineer Trainee",
+      "start_date": "2022-07",
+      "end_date": "2022-09",
+      "description": "Gained familiarity with healthcare data standards and regulatory compliance. Built Python applications demonstrating core programming concepts and object-oriented programming principles. Implemented stored procedures and functions to optimize database performance. Performed data validation and quality checks across multiple database systems.",
+      "tech_used": ["Python", "SQL", "Oracle PL/SQL"]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Kathmandu Engineering College",
+      "degree": "BE in Computer Engineering",
+      "field": "Computer Engineering",
+      "start_date": "2017",
+      "end_date": "2022",
+      "gpa": null
+    }
+  ],
+  "certifications": [
+    { "name": "Performer of the Month", "issuer": "Cotiviti", "date": "2024-07" }
+  ],
+  "projects": [
+    {
+      "name": "Next Word Prediction in Nepali Language",
+      "description": "Developed a Nepali NLP model using BiLSTM to predict the next word in sentences, focusing on improving linguistic understanding and processing for the Nepali language. Worked with various machine learning techniques and tools to train and optimize the model.",
+      "tech_used": ["Python", "TensorFlow", "BiLSTM", "NLP"]
+    },
+    {
+      "name": "E-commerce Website",
+      "description": "Developed full-stack e-commerce web application using Flask framework with user authentication and session management. Created responsive web interface with HTML, CSS, and JavaScript. Designed and integrated database schema for e-commerce operations including user management, product inventory, and order tracking. Built RESTful APIs using Flask for frontend-backend communication.",
+      "tech_used": ["Python", "Flask", "HTML", "CSS", "JavaScript", "SQL"]
+    }
+  ]
+}

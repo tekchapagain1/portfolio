@@ -1,15 +1,17 @@
 import { lazy, Suspense } from 'react'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
-import SkillsSection from './components/SkillsSection'
-import ExperienceSection from './components/ExperienceSection'
-import EducationSection from './components/EducationSection'
-import CertificationsSection from './components/CertificationsSection'
-import ContactSection from './components/ContactSection'
 import Footer from './components/Footer'
 import './styles/resume.css'
 
+const SkillsSection = lazy(() => import('./components/SkillsSection'))
+const ExperienceSection = lazy(() => import('./components/ExperienceSection'))
+const EducationSection = lazy(() => import('./components/EducationSection'))
+const CertificationsSection = lazy(() => import('./components/CertificationsSection'))
 const QueryPlayground = lazy(() => import('./components/QueryPlayground'))
+const ContactSection = lazy(() => import('./components/ContactSection'))
+
+const fallback = <div className="resume-section"><div className="container" style={{ textAlign: 'center', color: 'var(--text-muted)' }}>-- Loading...</div></div>
 
 export default function App() {
   return (
@@ -17,14 +19,14 @@ export default function App() {
       <Nav />
       <Hero />
       <main className="container">
-        <SkillsSection />
-        <ExperienceSection />
-        <EducationSection />
-        <CertificationsSection />
-        <Suspense fallback={<div className="resume-section"><div className="container" style={{ textAlign: 'center', color: 'var(--text-muted)' }}>-- Loading query engine...</div></div>}>
+        <Suspense fallback={fallback}>
+          <SkillsSection />
+          <ExperienceSection />
+          <EducationSection />
+          <CertificationsSection />
           <QueryPlayground />
+          <ContactSection />
         </Suspense>
-        <ContactSection />
       </main>
       <Footer />
     </div>

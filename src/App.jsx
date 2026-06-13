@@ -4,6 +4,7 @@ import Hero from './components/Hero'
 import Footer from './components/Footer'
 import SolarSystemBackground from './components/SolarSystemBackground'
 import SolarToggle from './components/SolarToggle'
+import MusicToggle from './components/MusicToggle'
 import './styles/resume.css'
 
 const SkillsSection = lazy(() => import('./components/SkillsSection'))
@@ -19,6 +20,9 @@ export default function App() {
   const [solarEnabled, setSolarEnabled] = useState(
     () => localStorage.getItem('solarEnabled') !== 'false'
   )
+  const [musicEnabled, setMusicEnabled] = useState(
+    () => localStorage.getItem('musicEnabled') === 'true'
+  )
 
   function toggleSolar() {
     setSolarEnabled((p) => {
@@ -28,10 +32,19 @@ export default function App() {
     })
   }
 
+  function toggleMusic() {
+    setMusicEnabled((p) => {
+      const next = !p
+      localStorage.setItem('musicEnabled', next)
+      return next
+    })
+  }
+
   return (
     <div className="resume-page">
       <SolarSystemBackground enabled={solarEnabled} />
       <SolarToggle enabled={solarEnabled} onToggle={toggleSolar} />
+      <MusicToggle enabled={musicEnabled} onToggle={toggleMusic} />
       <Nav />
       <Hero />
       <main className="container">

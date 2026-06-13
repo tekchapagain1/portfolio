@@ -1260,6 +1260,14 @@ html.theme--light .run-btn {
     padding: 32px 0;
   }
 
+  .skill-pills {
+    padding: var(--space-2);
+  }
+
+  .skill-cat-header {
+    padding: var(--space-2) var(--space-3);
+  }
+
   .query-result-block .output-table {
     overflow-x: auto;
   }

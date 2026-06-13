@@ -370,11 +370,13 @@ html.theme--light .query-block {
   background: var(--color-prompt);
   color: #080C18;
   border-color: var(--color-prompt);
+  box-shadow: 0 0 20px var(--green-glow);
 }
 
 .btn-primary:hover {
   background: var(--green-dim);
   border-color: var(--green-dim);
+  box-shadow: 0 0 28px var(--green-glow);
 }
 
 .btn-primary:hover .btn-icon {

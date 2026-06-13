@@ -7,7 +7,7 @@ function Footer() {
   if (standardView) {
     return (
       <footer className="resume-footer">
-        \u00A9 {new Date().getFullYear()} Tek Chapagain \u00A0·\u00A0 Built with React
+        &copy; {new Date().getFullYear()} Tek Chapagain &nbsp;·&nbsp; Built with React
       </footer>
     )
   }

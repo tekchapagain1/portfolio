@@ -1,7 +1,9 @@
-import { lazy, Suspense } from 'react'
+import { useState, lazy, Suspense } from 'react'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import Footer from './components/Footer'
+import SolarSystemBackground from './components/SolarSystemBackground'
+import SolarToggle from './components/SolarToggle'
 import './styles/resume.css'
 
 const SkillsSection = lazy(() => import('./components/SkillsSection'))
@@ -14,8 +16,22 @@ const ContactSection = lazy(() => import('./components/ContactSection'))
 const fallback = <div className="resume-section"><div className="container" style={{ textAlign: 'center', color: 'var(--text-muted)' }}>-- Loading...</div></div>
 
 export default function App() {
+  const [solarEnabled, setSolarEnabled] = useState(
+    () => localStorage.getItem('solarEnabled') !== 'false'
+  )
+
+  function toggleSolar() {
+    setSolarEnabled((p) => {
+      const next = !p
+      localStorage.setItem('solarEnabled', next)
+      return next
+    })
+  }
+
   return (
     <div className="resume-page">
+      <SolarSystemBackground enabled={solarEnabled} />
+      <SolarToggle enabled={solarEnabled} onToggle={toggleSolar} />
       <Nav />
       <Hero />
       <main className="container">

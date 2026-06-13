@@ -50,17 +50,17 @@ export default function SolarSystemBackground({ enabled }) {
 
     function drawSun(cx, cy) {
       const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, 70)
-      g.addColorStop(0, 'rgba(0,255,136,0.18)')
-      g.addColorStop(0.5, 'rgba(0,255,136,0.06)')
+      g.addColorStop(0, 'rgba(0,255,136,0.07)')
+      g.addColorStop(0.5, 'rgba(0,255,136,0.03)')
       g.addColorStop(1, 'rgba(0,255,136,0)')
       ctx.fillStyle = g
       ctx.beginPath()
       ctx.arc(cx, cy, 70, 0, Math.PI * 2)
       ctx.fill()
 
-      ctx.fillStyle = 'rgba(0,255,136,0.8)'
+      ctx.fillStyle = 'rgba(0,255,136,0.25)'
       ctx.beginPath()
-      ctx.arc(cx, cy, 4, 0, Math.PI * 2)
+      ctx.arc(cx, cy, 3, 0, Math.PI * 2)
       ctx.fill()
     }
 
@@ -86,29 +86,29 @@ export default function SolarSystemBackground({ enabled }) {
         const x = cx + Math.cos(a) * p.radius
         const y = cy + Math.sin(a) * p.radius * 0.4
 
-        ctx.strokeStyle = p.color + '20'
-        ctx.lineWidth = 1
+        ctx.strokeStyle = p.color + '0D'
+        ctx.lineWidth = 0.5
         ctx.beginPath()
         ctx.ellipse(cx, cy, p.radius, p.radius * 0.4, 0, 0, Math.PI * 2)
         ctx.stroke()
 
-        const glow = ctx.createRadialGradient(x, y, 0, x, y, p.size * 4)
-        glow.addColorStop(0, p.color + '40')
+        const glow = ctx.createRadialGradient(x, y, 0, x, y, p.size * 3)
+        glow.addColorStop(0, p.color + '15')
         glow.addColorStop(1, p.color + '00')
         ctx.fillStyle = glow
         ctx.beginPath()
-        ctx.arc(x, y, p.size * 4, 0, Math.PI * 2)
+        ctx.arc(x, y, p.size * 3, 0, Math.PI * 2)
         ctx.fill()
 
-        ctx.fillStyle = p.color
+        ctx.fillStyle = p.color + '50'
         ctx.beginPath()
         ctx.arc(x, y, p.size, 0, Math.PI * 2)
         ctx.fill()
 
-        ctx.fillStyle = '#7C8CA5'
-        ctx.font = '12px JetBrains Mono, monospace'
+        ctx.fillStyle = '#4B5670'
+        ctx.font = '11px JetBrains Mono, monospace'
         ctx.textAlign = 'left'
-        ctx.fillText(p.name, x + p.size + 10, y + 5)
+        ctx.fillText(p.name, x + p.size + 8, y + 4)
       }
 
       angle += 0.008

@@ -14,7 +14,7 @@
   --blue: #60A5FA;
   --text-primary: #E2E8F0;
   --text-secondary: #8892A4;
-  --text-muted: #4B5670;
+  --text-muted: #7C8CA5;
   --font: 'JetBrains Mono', monospace;
   --radius-sm: 4px;
   --radius-md: 6px;
@@ -62,7 +62,7 @@ html.theme--light {
   --blue: #2563EB;
   --text-primary: #1E293B;
   --text-secondary: #475569;
-  --text-muted: #94A3B8;
+  --text-muted: #5A6982;
   --color-prompt: var(--green);
   --color-success: var(--green);
   --color-error: var(--red);

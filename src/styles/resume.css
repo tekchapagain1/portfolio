@@ -1112,15 +1112,6 @@ html.theme--light .run-btn {
 
 /* ── MOBILE RESPONSIVENESS ──────────────── */
 @media (max-width: 768px) {
-  .resume-hero {
-    padding: 48px var(--space-4) 32px;
-    min-height: auto;
-  }
-
-  .resume-hero-name {
-    font-size: clamp(26px, 5vw, 36px);
-  }
-
   .resume-section {
     padding: 48px 0;
   }
@@ -1128,32 +1119,6 @@ html.theme--light .run-btn {
   .resume-nav-inner {
     padding: 0 var(--space-4);
     height: 48px;
-  }
-
-  .query-body {
-    padding: var(--space-4);
-  }
-
-  .btn {
-    padding: 11px var(--space-4);
-    min-height: 44px;
-  }
-
-  .resume-hero-actions {
-    flex-direction: column;
-  }
-
-  .resume-hero-actions .btn {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .resume-hero-stats {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .query-block {
-    overflow-x: auto;
   }
 
   .skill-pills {
@@ -1181,88 +1146,82 @@ html.theme--light .run-btn {
     font-size: 16px;
   }
 
-  .resume-statusbar {
+  .standard-view .resume-hero {
+    padding: 48px var(--space-4) 32px;
+    min-height: auto;
+  }
+
+  .standard-view .resume-hero-name {
+    font-size: clamp(26px, 5vw, 36px);
+  }
+
+  .standard-view .query-body {
+    padding: var(--space-4);
+  }
+
+  .standard-view .btn {
+    padding: 11px var(--space-4);
+    min-height: 44px;
+  }
+
+  .standard-view .resume-hero-actions {
+    flex-direction: column;
+  }
+
+  .standard-view .resume-hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .standard-view .resume-hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .standard-view .query-block {
+    overflow-x: auto;
+  }
+
+  .standard-view .resume-statusbar {
     font-size: 10px;
     flex-wrap: wrap;
   }
 
-  .resume-statusbar span {
+  .standard-view .resume-statusbar span {
     padding: 4px 10px;
   }
 
-  .standard-intro-card {
+  .standard-view .output-table {
+    overflow-x: auto;
+  }
+
+  .standard-view .standard-intro-card {
     padding: var(--space-5);
   }
 
-  .standard-intro-header {
+  .standard-view .standard-intro-header {
     flex-direction: column;
     text-align: center;
     gap: var(--space-3);
   }
 
-  .standard-intro-avatar {
+  .standard-view .standard-intro-avatar {
     width: 48px;
     height: 48px;
     font-size: 16px;
   }
 
-  .standard-intro-name {
+  .standard-view .standard-intro-name {
     font-size: 18px;
   }
 
-  .standard-intro-highlights {
+  .standard-view .standard-intro-highlights {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .output-table {
-    overflow-x: auto;
   }
 }
 
 @media (max-width: 480px) {
-  .resume-hero {
-    padding: 32px var(--space-3) 24px;
-  }
-
-  .resume-hero-name {
-    font-size: clamp(22px, 6vw, 28px);
-  }
-
-  .resume-hero-title {
-    font-size: 14px;
-  }
-
-  .resume-hero-summary {
-    font-size: 13px;
-  }
-
   .resume-section {
     padding: 32px 0;
-  }
-
-  .resume-section-title-standard {
-    font-size: 19px;
-  }
-
-  .standard-highlight {
-    padding: var(--space-2);
-  }
-
-  .standard-highlight-val {
-    font-size: 16px;
-  }
-
-  .query-body {
-    padding: var(--space-3);
-  }
-
-  .query-block {
-    overflow-x: auto;
-  }
-
-  .query-line {
-    font-size: 12px;
-    white-space: nowrap;
   }
 
   .query-result-block .output-table {
@@ -1277,14 +1236,6 @@ html.theme--light .run-btn {
 
   .db-table-header {
     padding: var(--space-2) var(--space-3);
-    font-size: 10px;
-  }
-
-  .stat-val {
-    font-size: 20px;
-  }
-
-  .stat-lbl {
     font-size: 10px;
   }
 
@@ -1305,5 +1256,54 @@ html.theme--light .run-btn {
   .output-table th {
     padding: var(--space-1) var(--space-2);
     font-size: 12px;
+  }
+
+  .standard-view .resume-hero {
+    padding: 32px var(--space-3) 24px;
+  }
+
+  .standard-view .resume-hero-name {
+    font-size: clamp(22px, 6vw, 28px);
+  }
+
+  .standard-view .resume-hero-title {
+    font-size: 14px;
+  }
+
+  .standard-view .resume-hero-summary {
+    font-size: 13px;
+  }
+
+  .standard-view .resume-section-title-standard {
+    font-size: 19px;
+  }
+
+  .standard-view .standard-highlight {
+    padding: var(--space-2);
+  }
+
+  .standard-view .standard-highlight-val {
+    font-size: 16px;
+  }
+
+  .standard-view .query-body {
+    padding: var(--space-3);
+  }
+
+  .standard-view .query-block {
+    overflow-x: auto;
+  }
+
+  .standard-view .query-line {
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .standard-view .stat-val {
+    font-size: 20px;
+  }
+
+  .standard-view .stat-lbl {
+    font-size: 10px;
   }
 }

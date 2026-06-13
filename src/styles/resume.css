@@ -1152,6 +1152,45 @@ html.theme--light .run-btn {
   margin-bottom: var(--space-7);
 }
 
+.looking-for {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.looking-for strong {
+  color: var(--amber);
+  font-weight: 700;
+}
+
+.looking-for-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  flex-shrink: 0;
+  box-shadow: 0 0 6px var(--green-glow);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.looking-for--inline {
+  display: inline-flex;
+  margin-bottom: var(--space-5);
+}
+
 /* ── MOBILE RESPONSIVENESS ──────────────── */
 @media (max-width: 768px) {
   .resume-section {

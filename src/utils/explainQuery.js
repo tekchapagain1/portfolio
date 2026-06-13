@@ -1,4 +1,3 @@
-import { getTableNames } from '../data/resume'
 
 export function explainQuery(ast) {
   if (ast.type === 'show_tables') return 'List all available tables in the database.'
@@ -66,7 +65,6 @@ function describeCondition(cond) {
 export function generateQueryPlan(ast, rowCount) {
   const steps = []
   const tableName = ast.from || 'profile'
-  const tables = getTableNames()
   const estimatedRows = 4 // rough estimate based on typical data size
   steps.push({
     label: 'Scan ExistingRDD',
@@ -79,7 +77,6 @@ export function generateQueryPlan(ast, rowCount) {
     })
   }
   if (ast.groupBy) {
-    const n = Math.max(1, ast.groupBy.length)
     steps.push({
       label: 'HashAggregate',
       detail: `groupBy=[${ast.groupBy.join(', ')}], functions=[${ast.fields.filter(f => f.type === 'function').map(f => `${f.name}(${f.args.map(a => a.type === 'star' ? '*' : a.name).join(',')})`).join(', ')}]`,

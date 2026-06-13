@@ -1,26 +1,142 @@
+import { useEffect, useRef } from 'react'
 import { resumeData } from '../data/resume'
 
-const { profile, experience } = resumeData
+const { profile, experience, skills } = resumeData
 
 export default function Hero() {
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible')
+            obs.unobserve(e.target)
+          }
+        })
+      },
+      { threshold: 0.08 }
+    )
+    el.querySelectorAll('.fade-in').forEach((child) => obs.observe(child))
+    return () => obs.disconnect()
+  }, [])
+
   const startYears = experience
-    .filter(e => e.start_date)
-    .map(e => parseInt(e.start_date.slice(0, 4), 10))
+    .filter((e) => e.start_date)
+    .map((e) => parseInt(e.start_date.slice(0, 4), 10))
   const earliestStart = Math.min(...startYears)
   const years = new Date().getFullYear() - (earliestStart || 2022)
+
+  const expertSkills = skills.filter((s) => s.proficiency === 'Advanced').length
+  const pipelineCount = experience.length
+
   return (
-    <header className="hero">
-      <div className="hero-badge">
-        <span className="hero-badge-dot" />
-        {profile.title}
-      </div>
-      <h1 className="hero-title">
-        <span className="hero-prompt">$</span> SELECT * FROM {profile.name.toLowerCase().replace(/\s+/, '_')}
-      </h1>
-      <p className="hero-subtitle">{profile.summary}</p>
-      <div className="hero-meta">
-        <span className="hero-meta-item">{profile.location}</span>
-        <span className="hero-meta-item">⏳ {years}+ years experience</span>
+    <header ref={ref}>
+      <div className="resume-hero">
+        <p className="resume-hero-eyebrow">
+          -- RESUME.DB &nbsp;·&nbsp; ESTABLISHED {earliestStart} &nbsp;·&nbsp; KATHMANDU, NP
+        </p>
+
+        <div className="query-block fade-in">
+          <div className="query-titlebar">
+            <div className="dot dot-r" />
+            <div className="dot dot-y" />
+            <div className="dot dot-g" />
+            <span className="query-titlebar-label">oracle — resume.db</span>
+          </div>
+          <div className="query-body">
+            <div className="query-line">
+              <span className="prompt-sym">resume=#</span>
+              <span>
+                <span className="sql-kw">SELECT</span>
+                <span className="sql-op"> name, title, location </span>
+                <span className="sql-kw">FROM</span>
+                <span className="sql-tbl"> profile</span>
+                <span className="sql-op"> </span>
+                <span className="sql-kw">WHERE</span>
+                <span className="sql-op"> status </span>
+                <span className="sql-op">= </span>
+                <span className="sql-str">'active'</span>
+                <span className="sql-op">;</span>
+              </span>
+            </div>
+            <div className="query-result-block">
+              <div className="result-meta">
+                <span className="ok">●</span> 1 row returned (0.003 ms)
+              </div>
+              <div className="output-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>name</th>
+                      <th>title</th>
+                      <th>location</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{profile.name}</td>
+                      <td>
+                        {profile.title}{' '}
+                        <span className="sql-cmt">-- Data Engineer · Business Intelligence Developer</span>
+                      </td>
+                      <td>{profile.location}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div className="query-line" style={{ marginTop: 14 }}>
+              <span className="prompt-sym">resume=#</span>
+              <span className="cursor-blink" />
+            </div>
+          </div>
+        </div>
+
+        <div className="fade-in" style={{ transitionDelay: '0.1s' }}>
+          <h1 className="resume-hero-name">
+            {profile.name.split(' ')[0]}{' '}
+            <span className="accent">{profile.name.split(' ').slice(1).join(' ')}</span>
+          </h1>
+          <p className="resume-hero-title">
+            <span className="tech">ETL Developer</span> &nbsp;/&nbsp; Data Engineer &nbsp;/&nbsp; Business Intelligence Developer
+          </p>
+          <p className="resume-hero-summary">{profile.summary}</p>
+          <div className="resume-hero-actions">
+            <a href="#query" className="btn btn-primary">
+              <span className="btn-icon">▶</span>
+              <span>Run a query</span>
+            </a>
+            <a href="#contact" className="btn btn-ghost">
+              <span className="btn-icon">→</span>
+              <span>Get in touch</span>
+            </a>
+          </div>
+        </div>
+
+        <div className="resume-hero-stats fade-in" style={{ transitionDelay: '0.2s' }}>
+          <div className="stat-cell">
+            <div className="stat-val">{years}+</div>
+            <div className="stat-lbl">YRS EXPERIENCE</div>
+          </div>
+          <div className="stat-cell">
+            <div className="stat-val">{pipelineCount}</div>
+            <div className="stat-lbl">POSITIONS HELD</div>
+          </div>
+          <div className="stat-cell">
+            <div className="stat-val">{expertSkills}</div>
+            <div className="stat-lbl">EXPERT SKILLS</div>
+          </div>
+          <div className="stat-cell">
+            <div className="stat-val">
+              {profile.name.split(' ')[0][0]}.{profile.name.split(' ').slice(-1)[0][0]}
+            </div>
+            <div className="stat-lbl">CERTIFICATIONS</div>
+          </div>
+        </div>
       </div>
     </header>
   )

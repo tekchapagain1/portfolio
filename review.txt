@@ -1,0 +1,218 @@
+================================================================
+  DESIGN SYSTEM AUDIT — TEK CHAPAGAIN | ETL DEVELOPER PORTFOLIO
+================================================================
+Date: June 13, 2026
+Auditor: Claude (Anthropic)
+Score: 70 / 100
+
+Overall: Strong concept and clear identity. The terminal/SQL theme
+is distinctive and on-brand. Main gaps: missing a formal token
+layer, inconsistent component state coverage, and limited
+accessibility scaffolding. Good bones — refinement needed.
+
+Components reviewed: 6  |  Issues found: 9  |  Score: 70/100
+
+
+----------------------------------------------------------------
+  TOKEN COVERAGE
+----------------------------------------------------------------
+
+Colors         ⚠ Partial
+               Terminal palette used inline; no CSS custom
+               properties system defined.
+
+Typography     ⚠ Partial
+               JetBrains Mono loaded; no type scale or weight
+               tokens formalised.
+
+Spacing        ✗ Missing
+               No spacing scale; arbitrary px values likely
+               scattered throughout CSS.
+
+Motion         ✗ Missing
+               No defined easing or duration tokens for terminal
+               animations.
+
+Borders/Radius ⚠ Partial
+               Terminal aesthetic suggests sharp corners — not
+               formally tokenised.
+
+Semantic aliases ✗ Missing
+               No --color-sql-keyword, --color-error,
+               --color-success, or similar aliases defined.
+
+
+----------------------------------------------------------------
+  ISSUES FOUND
+----------------------------------------------------------------
+
+[HIGH] No CSS custom-property token layer
+  Colors, font sizes, and spacing are most likely hardcoded
+  throughout component CSS. Any theme or contrast change requires
+  hunting every file.
+
+  Fix: Create a styles/tokens.css with :root variables:
+    --color-bg, --color-surface, --color-prompt,
+    --color-keyword, --color-string, --color-error,
+    --font-mono, --space-*, etc.
+
+----
+
+[HIGH] No SQL syntax token colour system
+  SQL keywords, table names, strings, numbers, and operators
+  should each have a named semantic colour. Without this, the
+  query output is visually flat and hard to parse.
+
+  Fix: Define semantic tokens:
+    --color-sql-keyword  → amber / yellow
+    --color-sql-string   → green
+    --color-sql-number   → blue
+    --color-sql-table    → cyan
+    --color-sql-error    → red
+
+----
+
+[HIGH] Missing keyboard focus styles
+  A terminal UI relies on keyboard interaction. Without visible
+  focus rings on the query input, mode toggle, and result rows,
+  it is inaccessible to keyboard-only and assistive technology
+  users.
+
+  Fix: Add globally —
+    :focus-visible {
+      outline: 2px solid var(--color-prompt);
+      outline-offset: 2px;
+    }
+  Never use outline: none without a custom replacement.
+
+----
+
+[MEDIUM] No loading / empty states defined
+  The chatbot and SQL query paths have latency (especially chat
+  via Claude API). Without a loading indicator and empty-result
+  state, the UI looks broken mid-query.
+
+  Fix: Define:
+    - Blinking cursor animation for loading state
+    - Styled "No results" row for empty queries
+    - Error row component for malformed SQL
+
+----
+
+[MEDIUM] Mode toggle (SQL / Chat) has no active-state spec
+  Two-mode UIs need a clear selected vs unselected visual
+  treatment. Without it, users may not know which mode is active,
+  especially on page load.
+
+  Fix: Spec active tab:
+    Active:   background: var(--color-prompt); color: var(--color-bg)
+    Inactive: transparent with muted text
+    Add aria-selected attribute to toggle elements.
+
+----
+
+[MEDIUM] Table result rows have no hover / selected states
+  SQL result tables are scannable data. Users need row hover and
+  optional row-selection to compare values. Currently not
+  specified.
+
+  Fix:
+    tr:hover { background: var(--color-surface-hover); }
+  For header rows, add position: sticky; top: 0 with a
+  background so they don't ghost on scroll.
+
+----
+
+[MEDIUM] No motion / animation spec
+  Terminal UIs live and die by typing animations and cursor
+  blinks. These are currently ad-hoc. No shared easing or
+  duration means an inconsistent feel across the UI.
+
+  Fix: Define tokens:
+    --duration-cursor:  0.5s
+    --duration-type:    0.03s
+    --ease-snap:        cubic-bezier(0.16, 1, 0.3, 1)
+  Wrap all animations in prefers-reduced-motion guard.
+
+----
+
+[LOW] JetBrains Mono weight range underused
+  The font loads weights 400, 500, 700 and italic. Currently
+  likely only weight 400 is used. Weight contrast is the primary
+  visual differentiator in a monospace UI.
+
+  Fix:
+    700     → SQL keywords
+    400     → values and strings
+    500     → table / column headers
+    italic  → comments and hints
+  Document these mappings in the token spec.
+
+----
+
+[LOW] No mobile breakpoint for table output
+  Wide SQL result tables overflow on narrow viewports. The meta
+  viewport tag is set but no responsive table strategy is defined.
+
+  Fix: On small screens —
+    - Horizontal scroll on .result-table wrapper, OR
+    - Collapse to key-value card layout for tables with >4 columns
+
+
+----------------------------------------------------------------
+  COMPONENT COMPLETENESS
+----------------------------------------------------------------
+
+Component         States                    Variants  A11y       Score
+----------------  ------------------------  --------  ---------  -----
+Query input       ✅ Default ⚠ Focus        SQL only  ⚠ No label  6/10
+                  ✅ Error
+
+Result table      ✅ Populated              —         ✗ No        4/10
+                  ✗ Empty  ✗ Hover                   scope/th
+
+Chat message      ✅ User  ✅ Bot           —         ⚠ No roles  5/10
+                  ✗ Loading
+
+Mode toggle       ⚠ Active unclear         —         ✗ No        4/10
+                  ✗ Hover                             aria-selected
+
+Prompt examples   ✅ Default  ✅ Hover      —         ⚠ Partial   6/10
+                  ✗ Active
+
+Header / nav      ✅ Default               —         ✅ Semantic  8/10
+
+
+----------------------------------------------------------------
+  PRIORITY ACTIONS (ordered by impact)
+----------------------------------------------------------------
+
+01. Create tokens.css
+    Centralise all colours, spacing, and font sizes into CSS
+    custom properties. This single file makes every other fix
+    easier and is the foundation of the entire design system.
+
+02. Add SQL syntax colours
+    Semantic colour tokens for keywords, strings, numbers, and
+    errors. The query output should look like a real terminal —
+    not plain monochrome text.
+
+03. Fix focus styles and ARIA
+    Add visible focus rings, aria-selected on mode toggle, scope
+    on table headers. A developer audience will notice missing
+    accessibility basics immediately.
+
+04. Define loading and empty states
+    Blinking cursor for query loading, styled "No results" row,
+    error message component. These are the moments users judge
+    the polish of a UI.
+
+05. Leverage JetBrains Mono weights
+    Bold keywords, regular values, italic comments. Weight
+    contrast is free visual hierarchy in a monospace UI — it
+    costs nothing and adds a lot.
+
+
+================================================================
+  END OF AUDIT
+================================================================

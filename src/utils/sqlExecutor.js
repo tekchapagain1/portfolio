@@ -39,11 +39,12 @@ function matchesCondition(row, condition) {
       return Number(leftVal) >= Number(rightVal)
     case '<=':
       return Number(leftVal) <= Number(rightVal)
-    case 'LIKE':
+    case 'LIKE': {
       const pattern = String(rightVal).toLowerCase().replace(/%/g, '.*')
       const regex = new RegExp(`^${pattern}$`, 'i')
       if (Array.isArray(leftVal)) return leftVal.some(v => regex.test(String(v)))
       return regex.test(String(leftVal))
+    }
     default:
       return false
   }

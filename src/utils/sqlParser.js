@@ -238,8 +238,6 @@ export function parseQuery(sql) {
   const cleaned = sql.trim()
   if (!cleaned) throw new Error('Empty query')
 
-  const upper = cleaned.toUpperCase()
-
   if (/^SHOW\s+TABLES\s*;?\s*$/i.test(cleaned)) {
     return { type: 'show_tables' }
   }

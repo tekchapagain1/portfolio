@@ -35,7 +35,7 @@ export default function QueryMode({ onRecordQuery }) {
       setResult(res)
       setPlan(generateQueryPlan(ast, res.rowCount))
       onRecordQuery(parseFloat(res.elapsed), false)
-    } catch (err) {
+    } catch {
       setError("Hmm, that query didn't work. This engine supports SELECT, WHERE, LIKE, GROUP BY, ORDER BY, LIMIT, SHOW TABLES, and DESCRIBE on resume tables. Try a simpler query or pick one from the suggestions above.")
       onRecordQuery(0, true)
     }
@@ -51,7 +51,7 @@ export default function QueryMode({ onRecordQuery }) {
     try {
       const ast = parseQuery(sql)
       setExplanation(explainQuery(ast))
-    } catch (err) {
+    } catch {
       setExplanation("Can't explain that query \u2014 try a valid SELECT with WHERE, GROUP BY, or ORDER BY on resume tables.")
     }
   }

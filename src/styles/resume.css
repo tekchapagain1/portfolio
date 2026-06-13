@@ -1152,6 +1152,10 @@ html.theme--light .run-btn {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .query-block {
+    overflow-x: auto;
+  }
+
   .skill-pills {
     padding: var(--space-3);
   }
@@ -1225,11 +1229,11 @@ html.theme--light .run-btn {
   }
 
   .resume-hero-title {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .resume-hero-summary {
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .resume-section {
@@ -1250,6 +1254,10 @@ html.theme--light .run-btn {
 
   .query-body {
     padding: var(--space-3);
+  }
+
+  .query-block {
+    overflow-x: auto;
   }
 
   .query-line {

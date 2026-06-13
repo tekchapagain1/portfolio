@@ -1264,6 +1264,8 @@ html.theme--light .run-btn {
     padding: 4px 10px;
     min-height: 28px;
     font-size: 11px;
+    display: inline-flex;
+    align-items: center;
   }
 
   .skill-pills {

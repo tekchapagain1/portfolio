@@ -8,7 +8,7 @@ export default function SolarToggle({ enabled, onToggle }) {
         bottom: 20,
         right: 20,
         zIndex: 999,
-        padding: '8px 14px',
+        padding: '14px 18px',
         borderRadius: 20,
         border: '1px solid rgba(0,255,136,0.25)',
         background: 'rgba(8,12,24,0.85)',

@@ -4,12 +4,12 @@ import Hero from './components/Hero'
 import Footer from './components/Footer'
 import SolarSystemBackground from './components/SolarSystemBackground'
 import SolarToggle from './components/SolarToggle'
-import MusicToggle from './components/MusicToggle'
 import { ViewContext } from './utils/ViewContext'
 import './styles/resume.css'
 
 const SkillsSection = lazy(() => import('./components/SkillsSection'))
 const ExperienceSection = lazy(() => import('./components/ExperienceSection'))
+const ProjectsSection = lazy(() => import('./components/ProjectsSection'))
 const EducationSection = lazy(() => import('./components/EducationSection'))
 const CertificationsSection = lazy(() => import('./components/CertificationsSection'))
 const QueryPlayground = lazy(() => import('./components/QueryPlayground'))
@@ -18,28 +18,19 @@ const ContactSection = lazy(() => import('./components/ContactSection'))
 const fallback = <div className="resume-section"><div className="container" style={{ textAlign: 'center', color: 'var(--text-muted)' }}>-- Loading...</div></div>
 
 export default function App() {
+  // Solar system is OFF by default — opt-in only. Heavy animation, easy to opt out of.
   const [solarEnabled, setSolarEnabled] = useState(
-    () => localStorage.getItem('solarEnabled') !== 'false'
+    () => localStorage.getItem('solarEnabled') === 'true'
   )
-  const [musicEnabled, setMusicEnabled] = useState(
-    () => localStorage.getItem('musicEnabled') === 'true'
-  )
+  // Standard View is the default — recruiter-friendly. Technical/SQL view is opt-in.
   const [standardView, setStandardView] = useState(
-    () => localStorage.getItem('standardView') === 'true'
+    () => localStorage.getItem('standardView') !== 'false'
   )
 
   function toggleSolar() {
     setSolarEnabled((p) => {
       const next = !p
-      localStorage.setItem('solarEnabled', next)
-      return next
-    })
-  }
-
-  function toggleMusic() {
-    setMusicEnabled((p) => {
-      const next = !p
-      localStorage.setItem('musicEnabled', next)
+      localStorage.setItem('solarEnabled', String(next))
       return next
     })
   }
@@ -47,7 +38,7 @@ export default function App() {
   function toggleStandard() {
     setStandardView((p) => {
       const next = !p
-      localStorage.setItem('standardView', next)
+      localStorage.setItem('standardView', String(next))
       return next
     })
   }
@@ -56,7 +47,6 @@ export default function App() {
     <div className={`resume-page${standardView ? ' standard-view' : ''}`}>
       <SolarSystemBackground enabled={solarEnabled} />
       <SolarToggle enabled={solarEnabled} onToggle={toggleSolar} />
-      <MusicToggle enabled={musicEnabled} onToggle={toggleMusic} />
         <ViewContext.Provider value={{ standardView }}>
           <Nav onToggle={toggleStandard} />
           <Hero />
@@ -64,9 +54,10 @@ export default function App() {
             <Suspense fallback={fallback}>
               <SkillsSection />
               <ExperienceSection />
+              <ProjectsSection />
               <EducationSection />
               <CertificationsSection />
-              <QueryPlayground />
+              {standardView ? null : <QueryPlayground />}
               <ContactSection />
             </Suspense>
           </main>

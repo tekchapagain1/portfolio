@@ -57,6 +57,13 @@ export default function Hero() {
               </div>
             </div>
             <p className="standard-intro-summary">{profile.summary}</p>
+            <div className="looking-for">
+              <span className="looking-for-dot" aria-hidden="true" />
+              <span>
+                <strong>Open to senior ETL / data engineering roles</strong> — remote or relocation-friendly.
+                4+ years building pipelines that don't wake you up at 3 a.m.
+              </span>
+            </div>
             <div className="standard-intro-highlights">
               <div className="standard-highlight">
                 <span className="standard-highlight-val">{years}+</span>
@@ -76,12 +83,16 @@ export default function Hero() {
               </div>
             </div>
             <div className="resume-hero-actions">
-              <a href="#skills" className="btn btn-primary">
+              <a href="#experience" className="btn btn-primary">
                 <span className="btn-icon">↓</span>
-                <span>View skills</span>
+                <span>See experience</span>
+              </a>
+              <a href="#projects" className="btn btn-ghost">
+                <span className="btn-icon">→</span>
+                <span>View projects</span>
               </a>
               <a href="#contact" className="btn btn-ghost">
-                <span className="btn-icon">→</span>
+                <span className="btn-icon">@</span>
                 <span>Get in touch</span>
               </a>
             </div>
@@ -153,6 +164,12 @@ export default function Hero() {
             <span className="tech">ETL Developer</span> &nbsp;/&nbsp; Data Engineer &nbsp;/&nbsp; Business Intelligence Developer
           </p>
           <p className="resume-hero-summary">{profile.summary}</p>
+          <div className="looking-for looking-for--inline">
+            <span className="looking-for-dot" aria-hidden="true" />
+            <span>
+              <strong>Open to senior ETL / data engineering roles</strong> — remote or relocation-friendly.
+            </span>
+          </div>
           <div className="resume-hero-actions">
               <a href="#query" className="btn btn-primary">
                 <span className="btn-icon">▶</span>

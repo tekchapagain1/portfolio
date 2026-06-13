@@ -178,7 +178,8 @@ html.theme--light .resume-nav {
   font-family: var(--font);
   font-size: 12px;
   letter-spacing: 0.05em;
-  padding: 4px 10px;
+  padding: 10px 12px;
+  min-height: 44px;
   cursor: pointer;
   transition: all var(--dur-fast);
   white-space: nowrap;
@@ -199,7 +200,8 @@ html.theme--light .resume-nav {
   .nav-view-toggle {
     margin-left: auto;
     font-size: 11px;
-    padding: 3px 8px;
+    padding: 10px 12px;
+    min-height: 44px;
   }
 }
 
@@ -388,6 +390,7 @@ html.theme--light .query-block {
   align-items: center;
   gap: var(--space-2);
   padding: 11px var(--space-5);
+  min-height: 44px;
   border-radius: var(--radius-md);
   font-family: var(--font);
   font-size: 13px;
@@ -791,6 +794,7 @@ html.theme--light .query-block {
 
 .run-btn {
   padding: var(--space-1) 14px;
+  min-height: 44px;
   background: var(--color-prompt);
   color: #080C18;
   border: none;
@@ -999,6 +1003,8 @@ html.theme--light .run-btn {
 }
 
 .contact-val {
+  display: inline-block;
+  padding: 14px 0;
   font-size: 13px;
   color: var(--text-primary);
 }
@@ -1172,8 +1178,8 @@ html.theme--light .run-btn {
   }
 
   .run-btn {
-    min-height: 36px;
-    padding: 8px 12px;
+    min-height: 44px;
+    padding: 10px 16px;
   }
 
   .contact-icon {

@@ -30,15 +30,13 @@ function runQuery(sql, setOutput, setIsRunning) {
   }
   setIsRunning(true)
   setOutput({ type: 'hint', text: '-- Executing...' })
-  setTimeout(() => {
-    try {
-      const result = executeQuery(raw)
-      setOutput({ type: 'rows', ...result })
-    } catch (e) {
-      setOutput({ type: 'error', text: e.message })
-    }
-    setIsRunning(false)
-  }, 180)
+  try {
+    const result = executeQuery(raw)
+    setOutput({ type: 'rows', ...result })
+  } catch (e) {
+    setOutput({ type: 'error', text: e.message })
+  }
+  setIsRunning(false)
 }
 
 export default function QueryPlayground() {

@@ -50,7 +50,7 @@ export default function App() {
         <ViewContext.Provider value={{ standardView }}>
           <Nav onToggle={toggleStandard} />
           <Hero />
-          <main className="container">
+          <main id="main-content" className="container">
             <Suspense fallback={fallback}>
               <SkillsSection />
               <ExperienceSection />

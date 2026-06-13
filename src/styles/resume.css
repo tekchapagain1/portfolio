@@ -167,6 +167,42 @@ html.theme--light .resume-nav {
   color: var(--color-link-hover);
 }
 
+.nav-view-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-family: var(--font);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: all var(--dur-fast);
+  white-space: nowrap;
+  margin-left: var(--space-4);
+}
+
+.nav-view-toggle:hover {
+  color: var(--color-link-hover);
+  border-color: var(--border-light);
+}
+
+.nav-view-toggle-icon {
+  font-size: 11px;
+  color: var(--color-prompt);
+}
+
+@media (max-width: 640px) {
+  .nav-view-toggle {
+    margin-left: auto;
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+}
+
 .resume-statusbar {
   background: var(--color-prompt);
   color: #080C18;

@@ -5,7 +5,6 @@ import Footer from './components/Footer'
 import SolarSystemBackground from './components/SolarSystemBackground'
 import SolarToggle from './components/SolarToggle'
 import MusicToggle from './components/MusicToggle'
-import ViewToggle from './components/ViewToggle'
 import { ViewContext } from './utils/ViewContext'
 import './styles/resume.css'
 
@@ -58,9 +57,8 @@ export default function App() {
       <SolarSystemBackground enabled={solarEnabled} />
       <SolarToggle enabled={solarEnabled} onToggle={toggleSolar} />
       <MusicToggle enabled={musicEnabled} onToggle={toggleMusic} />
-      <ViewToggle standardView={standardView} onToggle={toggleStandard} />
         <ViewContext.Provider value={{ standardView }}>
-          <Nav />
+          <Nav onToggle={toggleStandard} />
           <Hero />
           <main className="container">
             <Suspense fallback={fallback}>

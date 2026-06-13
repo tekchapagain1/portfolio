@@ -1260,6 +1260,12 @@ html.theme--light .run-btn {
     padding: 32px 0;
   }
 
+  .pill {
+    padding: 4px 10px;
+    min-height: 28px;
+    font-size: 11px;
+  }
+
   .skill-pills {
     padding: var(--space-2);
   }

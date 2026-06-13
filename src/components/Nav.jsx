@@ -1,12 +1,24 @@
-import { memo } from 'react'
+import { memo, useContext } from 'react'
+import { ViewContext } from '../utils/ViewContext'
 
 function Nav() {
+  const { standardView } = useContext(ViewContext)
+
   return (
     <nav className="resume-nav" aria-label="Section navigation">
       <div className="resume-nav-inner">
         <div className="resume-nav-logo">
-          <span className="prompt" aria-hidden="true">$</span>
-          <span>tek@resume:~</span>
+          {standardView ? (
+            <>
+              <span className="prompt" aria-hidden="true">◈</span>
+              <span>Tek Chapagain</span>
+            </>
+          ) : (
+            <>
+              <span className="prompt" aria-hidden="true">$</span>
+              <span>tek@resume:~</span>
+            </>
+          )}
         </div>
         <ul className="resume-nav-links" role="list">
           <li><a href="#skills">SKILLS</a></li>
@@ -17,10 +29,16 @@ function Nav() {
         </ul>
       </div>
       <div className="resume-statusbar" role="status">
-        <span>CONNECTED</span>
-        <span>DB: resume_v1</span>
-        <span>ENGINE: Oracle 19c</span>
-        <span>OPEN FOR WORK</span>
+        {standardView ? (
+          <span>RESUME — Tek Chapagain</span>
+        ) : (
+          <>
+            <span>CONNECTED</span>
+            <span>DB: resume_v1</span>
+            <span>ENGINE: Oracle 19c</span>
+            <span>OPEN FOR WORK</span>
+          </>
+        )}
       </div>
     </nav>
   )

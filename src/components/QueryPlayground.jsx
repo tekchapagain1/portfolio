@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import { initDatabase, executeQuery } from '../utils/realSqlExecutor'
+import SectionHeader from './SectionHeader'
 
 function useScrollFade(ref) {
   useEffect(() => {
@@ -82,11 +83,7 @@ export default function QueryPlayground() {
 
   return (
     <section id="query" className="resume-section" ref={ref}>
-      <div className="resume-section-header fade-in">
-        <span className="resume-section-tag">LIVE</span>
-        <span className="resume-section-title">query interface</span>
-        <div className="resume-section-rule" />
-      </div>
+      <SectionHeader tag="LIVE" title="query interface" standardTitle="Live Query" />
       <div className="playground fade-in">
         <div className="playground-header">
           <div className="dot dot-r" />

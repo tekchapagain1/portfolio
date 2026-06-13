@@ -1,11 +1,11 @@
-export default function SolarToggle({ enabled, onToggle }) {
+export default function ViewToggle({ standardView, onToggle }) {
   return (
     <button
       onClick={onToggle}
-      aria-label={enabled ? 'Disable solar system animation' : 'Enable solar system animation'}
+      aria-label={standardView ? 'Switch to technical (SQL terminal) view' : 'Switch to standard view'}
       style={{
         position: 'fixed',
-        bottom: 20,
+        bottom: 100,
         right: 20,
         zIndex: 999,
         padding: '8px 14px',
@@ -35,15 +35,19 @@ export default function SolarToggle({ enabled, onToggle }) {
         width: 18,
         height: 18,
         borderRadius: '50%',
-        background: enabled ? 'rgba(0,255,136,0.15)' : 'rgba(255,255,255,0.05)',
-        color: enabled ? '#00FF88' : '#4B5670',
-        fontSize: 10,
+        background: standardView ? 'rgba(255,255,255,0.08)' : 'rgba(0,255,136,0.15)',
+        color: standardView ? '#7C8CA5' : '#00FF88',
+        fontSize: 11,
+        fontWeight: 700,
         flexShrink: 0,
       }}>
-        {enabled ? '◉' : '○'}
+        {standardView ? '>' : '≡'}
       </span>
       <span style={{ whiteSpace: 'nowrap' }}>
-        {enabled ? 'Planets On' : 'Planets Off'}
+        {standardView ? 'Standard View' : 'Technical View'}
+      </span>
+      <span style={{ color: '#7C8CA5', fontSize: 11 }}>
+        {standardView ? '(click for SQL)' : '(click for default)'}
       </span>
     </button>
   )

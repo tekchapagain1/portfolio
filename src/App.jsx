@@ -5,6 +5,8 @@ import Footer from './components/Footer'
 import SolarSystemBackground from './components/SolarSystemBackground'
 import SolarToggle from './components/SolarToggle'
 import MusicToggle from './components/MusicToggle'
+import ViewToggle from './components/ViewToggle'
+import { ViewContext } from './utils/ViewContext'
 import './styles/resume.css'
 
 const SkillsSection = lazy(() => import('./components/SkillsSection'))
@@ -23,6 +25,9 @@ export default function App() {
   const [musicEnabled, setMusicEnabled] = useState(
     () => localStorage.getItem('musicEnabled') === 'true'
   )
+  const [standardView, setStandardView] = useState(
+    () => localStorage.getItem('standardView') === 'true'
+  )
 
   function toggleSolar() {
     setSolarEnabled((p) => {
@@ -40,24 +45,35 @@ export default function App() {
     })
   }
 
+  function toggleStandard() {
+    setStandardView((p) => {
+      const next = !p
+      localStorage.setItem('standardView', next)
+      return next
+    })
+  }
+
   return (
-    <div className="resume-page">
+    <div className={`resume-page${standardView ? ' standard-view' : ''}`}>
       <SolarSystemBackground enabled={solarEnabled} />
       <SolarToggle enabled={solarEnabled} onToggle={toggleSolar} />
       <MusicToggle enabled={musicEnabled} onToggle={toggleMusic} />
-      <Nav />
-      <Hero />
-      <main className="container">
-        <Suspense fallback={fallback}>
-          <SkillsSection />
-          <ExperienceSection />
-          <EducationSection />
-          <CertificationsSection />
-          <QueryPlayground />
-          <ContactSection />
-        </Suspense>
-      </main>
-      <Footer />
+      <ViewToggle standardView={standardView} onToggle={toggleStandard} />
+        <ViewContext.Provider value={{ standardView }}>
+          <Nav />
+          <Hero />
+          <main className="container">
+            <Suspense fallback={fallback}>
+              <SkillsSection />
+              <ExperienceSection />
+              <EducationSection />
+              <CertificationsSection />
+              <QueryPlayground />
+              <ContactSection />
+            </Suspense>
+          </main>
+          <Footer />
+        </ViewContext.Provider>
     </div>
   )
 }

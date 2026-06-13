@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { resumeData } from '../data/resume'
+import SectionHeader from './SectionHeader'
 
 const { skills } = resumeData
 
@@ -51,11 +52,7 @@ export default function SkillsSection() {
 
   return (
     <section id="skills" className="resume-section" ref={ref}>
-      <div className="resume-section-header fade-in">
-        <span className="resume-section-tag">TABLE</span>
-        <span className="resume-section-title">skills</span>
-        <div className="resume-section-rule" />
-      </div>
+      <SectionHeader tag="TABLE" title="skills" standardTitle="Skills" />
       <div className="skills-grid fade-in">
         {categorized.map(([cat, items]) => {
           const color = CATEGORY_COLORS[cat] || ''

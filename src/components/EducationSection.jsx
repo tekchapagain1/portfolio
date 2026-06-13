@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { resumeData } from '../data/resume'
+import SectionHeader from './SectionHeader'
 
 const { education } = resumeData
 
@@ -26,11 +27,7 @@ export default function EducationSection() {
 
   return (
     <section id="education" className="resume-section" ref={ref}>
-      <div className="resume-section-header fade-in">
-        <span className="resume-section-tag">TABLE</span>
-        <span className="resume-section-title">education</span>
-        <div className="resume-section-rule" />
-      </div>
+      <SectionHeader tag="TABLE" title="education" standardTitle="Education" />
       <div className="db-table edu-table fade-in">
         <div className="db-table-header">
           <span>▶</span>

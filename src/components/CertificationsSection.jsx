@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { resumeData } from '../data/resume'
+import SectionHeader from './SectionHeader'
 
 const { certifications } = resumeData
 
@@ -26,11 +27,7 @@ export default function CertificationsSection() {
 
   return (
     <section id="certifications" className="resume-section" ref={ref}>
-      <div className="resume-section-header fade-in">
-        <span className="resume-section-tag">TABLE</span>
-        <span className="resume-section-title">certifications</span>
-        <div className="resume-section-rule" />
-      </div>
+      <SectionHeader tag="TABLE" title="certifications" standardTitle="Certifications" />
       <div className="certs-grid fade-in">
         {certifications.map((cert, i) => (
           <div className="cert-card" key={i}>

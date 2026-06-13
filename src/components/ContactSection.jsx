@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { resumeData } from '../data/resume'
+import SectionHeader from './SectionHeader'
 
 const { profile } = resumeData
 
@@ -33,11 +34,7 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="resume-section" ref={ref}>
-      <div className="resume-section-header fade-in">
-        <span className="resume-section-tag">TABLE</span>
-        <span className="resume-section-title">contact</span>
-        <div className="resume-section-rule" />
-      </div>
+      <SectionHeader tag="TABLE" title="contact" standardTitle="Contact" />
       <div className="contact-grid fade-in">
         {items.map((item, i) => (
           <div className="contact-item" key={i}>

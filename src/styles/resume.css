@@ -92,6 +92,10 @@ html.theme--light {
   text-decoration: none;
 }
 
+.resume-page a.btn-primary {
+  color: #080C18;
+}
+
 .resume-page a:hover {
   color: var(--color-link-hover);
 }

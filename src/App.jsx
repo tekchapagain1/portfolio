@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense } from 'react'
+import { useState, useRef, lazy, Suspense } from 'react'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import Footer from './components/Footer'
@@ -16,6 +16,26 @@ const QueryPlayground = lazy(() => import('./components/QueryPlayground'))
 const ContactSection = lazy(() => import('./components/ContactSection'))
 
 const fallback = <div className="resume-section"><div className="container" style={{ textAlign: 'center', color: 'var(--text-muted)' }}>-- Loading...</div></div>
+
+function StandardHTML({ onToggle }) {
+  const iframeRef = useRef(null)
+
+  function onLoad() {
+    const doc = iframeRef.current?.contentDocument
+    if (doc) {
+      iframeRef.current.style.height = doc.documentElement.scrollHeight + 'px'
+    }
+  }
+
+  return (
+    <div className="standard-html">
+      <button className="std-toggle" onClick={onToggle} aria-label="Switch to technical view">
+        ≡ Technical
+      </button>
+      <iframe ref={iframeRef} src="/main.html" title="Resume" className="std-iframe" onLoad={onLoad} />
+    </div>
+  )
+}
 
 export default function App() {
   // Solar system is OFF by default — opt-in only. Heavy animation, easy to opt out of.
@@ -48,20 +68,26 @@ export default function App() {
       <SolarSystemBackground enabled={solarEnabled} />
       <SolarToggle enabled={solarEnabled} onToggle={toggleSolar} />
         <ViewContext.Provider value={{ standardView }}>
-          <Nav onToggle={toggleStandard} />
-          <Hero />
-          <main id="main-content" className="container">
-            <Suspense fallback={fallback}>
-              <SkillsSection />
-              <ExperienceSection />
-              <ProjectsSection />
-              <EducationSection />
-              <CertificationsSection />
-              {standardView ? null : <QueryPlayground />}
-              <ContactSection />
-            </Suspense>
-          </main>
-          <Footer />
+          {standardView ? (
+            <StandardHTML onToggle={toggleStandard} />
+          ) : (
+            <>
+              <Nav onToggle={toggleStandard} />
+              <Hero />
+              <main id="main-content" className="container">
+                <Suspense fallback={fallback}>
+                  <SkillsSection />
+                  <ExperienceSection />
+                  <ProjectsSection />
+                  <EducationSection />
+                  <CertificationsSection />
+                  <QueryPlayground />
+                  <ContactSection />
+                </Suspense>
+              </main>
+              <Footer />
+            </>
+          )}
         </ViewContext.Provider>
     </div>
   )

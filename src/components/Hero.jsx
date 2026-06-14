@@ -8,6 +8,7 @@ export default function Hero() {
   const { standardView } = useContext(ViewContext)
   const ref = useRef(null)
 
+
   useEffect(() => {
     const el = ref.current
     if (!el) return
@@ -81,20 +82,6 @@ export default function Hero() {
                 <span className="standard-highlight-val">{profile.location.split(',')[0]}</span>
                 <span className="standard-highlight-lbl">Location</span>
               </div>
-            </div>
-            <div className="resume-hero-actions">
-              <a href="#experience" className="btn btn-primary">
-                <span className="btn-icon">↓</span>
-                <span>See experience</span>
-              </a>
-              <a href="#projects" className="btn btn-ghost">
-                <span className="btn-icon">→</span>
-                <span>View projects</span>
-              </a>
-              <a href="#contact" className="btn btn-ghost">
-                <span className="btn-icon">@</span>
-                <span>Get in touch</span>
-              </a>
             </div>
           </div>
         ) : (
@@ -183,6 +170,7 @@ export default function Hero() {
         </div>
         )}
 
+        {!standardView && (
         <div className="resume-hero-stats fade-in" style={{ transitionDelay: '0.2s' }}>
           <div className="stat-cell">
             <div className="stat-val">{years}+</div>
@@ -201,7 +189,9 @@ export default function Hero() {
             <div className="stat-lbl">CERTIFICATIONS</div>
           </div>
         </div>
+        )}
       </div>
+
     </header>
   )
 }

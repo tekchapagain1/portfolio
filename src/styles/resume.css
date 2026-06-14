@@ -400,6 +400,7 @@ html.theme--light .query-block {
   border: 1px solid transparent;
   letter-spacing: 0.03em;
   line-height: 1;
+  box-sizing: border-box;
 }
 
 .btn-icon {
@@ -1424,3 +1425,38 @@ html.theme--light .run-btn {
 .skip-link:focus {
   top: 8px;
 }
+
+.standard-html {
+  position: relative;
+  min-height: 100vh;
+}
+
+.std-iframe {
+  width: 100%;
+  border: none;
+  display: block;
+  height: 0;
+}
+
+.std-toggle {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 9999;
+  font-family: var(--font);
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--dur-mid) var(--ease-snap);
+  letter-spacing: 0.04em;
+}
+
+.std-toggle:hover {
+  border-color: var(--color-prompt);
+  color: var(--color-prompt);
+}
+

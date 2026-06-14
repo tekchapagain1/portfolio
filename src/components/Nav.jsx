@@ -11,7 +11,7 @@ function Nav({ onToggle }) {
           {standardView ? (
             <>
               <span className="prompt" aria-hidden="true">◈</span>
-              <span>Tek Chapagain</span>
+              <a href="#">Tek Chapagain</a>
             </>
           ) : (
             <>
@@ -24,7 +24,7 @@ function Nav({ onToggle }) {
           <li><a href="#skills">SKILLS</a></li>
           <li><a href="#experience">EXPERIENCE</a></li>
           <li><a href="#education">EDUCATION</a></li>
-          <li><a href="#query">QUERY</a></li>
+          {!standardView && <li><a href="#query">QUERY</a></li>}
           <li><a href="#contact">CONTACT</a></li>
         </ul>
         <button

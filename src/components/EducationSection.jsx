@@ -71,7 +71,7 @@ export default function EducationSection() {
             <span className="prompt-sym">resume=#</span>
             <span>
               <span className="sql-kw">SELECT</span>
-              <span className="sql-op"> degree, institution, end_date, </span>
+              <span className="sql-op"> degree, institution, year, </span>
               <span className="sql-fn">NVL</span>
               <span className="sql-op">(gpa, </span>
               <span className="sql-str">'—'</span>

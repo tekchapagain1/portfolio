@@ -12,18 +12,14 @@
   },
   "skills": [
     { "skill": "Python", "category": "Programming", "proficiency": "Advanced" },
-    { "skill": "Oracle PL/SQL", "category": "Programming", "proficiency": "Advanced" },
-    { "skill": "SQL", "category": "Programming", "proficiency": "Advanced" },
-    { "skill": "Flask", "category": "Web Framework", "proficiency": "Advanced" },
     { "skill": "Databricks", "category": "Platform", "proficiency": "Intermediate" },
-    { "skill": "Oracle SQL Developer", "category": "Tools", "proficiency": "Advanced" },
-    { "skill": "Tableau", "category": "Visualization", "proficiency": "Intermediate" },
-    { "skill": "SQL Server Integration Services", "category": "ETL", "proficiency": "Intermediate" },
-    { "skill": "Linux", "category": "Platform", "proficiency": "Advanced" },
+    { "skill": "Tableau", "category": "Platform", "proficiency": "Intermediate" },
+    { "skill": "Linux", "category": "Platform", "proficiency": "Intermediate" },
     { "skill": "Git", "category": "DevOps", "proficiency": "Advanced" },
     { "skill": "Bamboo", "category": "CI/CD", "proficiency": "Intermediate" },
-    { "skill": "Octopus Deploy", "category": "CI/CD", "proficiency": "Intermediate" },
-    { "skill": "Oracle Database", "category": "Database", "proficiency": "Advanced" },
+    { "skill": "Octopus ", "category": "CI/CD", "proficiency": "Intermediate" },
+    { "skill": "Oracle", "category": "Database", "proficiency": "Advanced" },
+    { "skill": "Flask", "category": "Web Development", "proficiency": "Advanced" },
     { "skill": "HTML/CSS/JavaScript", "category": "Web Development", "proficiency": "Intermediate" }
   ],
   "experience": [
@@ -33,7 +29,7 @@
       "start_date": "2024-03",
       "end_date": "Present",
       "description": "Automated ETL pipelines with Oracle databases and Databricks, enhancing data processing speed and accuracy. Led the implementation of CI/CD pipelines for Python web applications using Bamboo and Octopus Deploy, streamlining deployment processes and improving development efficiency. Collaborated with cross-functional teams to ensure seamless integration of database updates and application features. Currently building ETL workflows on Databricks for large-scale data transformation.",
-      "tech_used": ["Python", "Oracle PL/SQL", "Databricks", "Bamboo", "Octopus Deploy", "Oracle SQL Developer", "Linux", "Git"]
+      "tech_used": ["Python", "Oracle PL/SQL", "Databricks", "Bamboo", "Octopus ", "Oracle SQL Developer", "Linux", "Git"]
     },
     {
       "company": "Cotiviti",

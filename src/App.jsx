@@ -66,7 +66,7 @@ export default function App() {
   return (
     <div className={`resume-page${standardView ? ' standard-view' : ''}`}>
       <SolarSystemBackground enabled={solarEnabled} />
-      <SolarToggle enabled={solarEnabled} onToggle={toggleSolar} />
+      <SolarToggle enabled={solarEnabled} onToggle={toggleSolar} standardView={standardView} onToggleView={toggleStandard} />
         <ViewContext.Provider value={{ standardView }}>
           {standardView ? (
             <StandardHTML onToggle={toggleStandard} />

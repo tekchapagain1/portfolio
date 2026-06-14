@@ -4,29 +4,6 @@ import SectionHeader from './SectionHeader'
 
 const { skills } = resumeData
 
-const CATEGORY_COLORS = {
-  'Programming': 'amber',
-  'Web Framework': 'amber',
-  'Platform': null,
-  'Tools': null,
-  'Visualization': 'cyan',
-  'ETL': null,
-  'DevOps': 'blue',
-  'CI/CD': 'blue',
-  'Database': 'purple',
-  'Web Development': 'cyan',
-}
-
-function categorizeSkills() {
-  const map = {}
-  for (const s of skills) {
-    const cat = s.category || 'Other'
-    if (!map[cat]) map[cat] = []
-    map[cat].push(s)
-  }
-  return Object.entries(map)
-}
-
 export default function SkillsSection() {
   const ref = useRef(null)
 
@@ -48,33 +25,32 @@ export default function SkillsSection() {
     return () => obs.disconnect()
   }, [])
 
-  const categorized = categorizeSkills()
-
   return (
     <section id="skills" className="resume-section" ref={ref}>
       <SectionHeader tag="TABLE" title="skills" standardTitle="Skills" />
-      <div className="skills-grid fade-in">
-        {categorized.map(([cat, items]) => {
-          const color = CATEGORY_COLORS[cat] || ''
-          return (
-            <div key={cat}>
-              <div className="skill-cat-header">
-                <div className={`cat-dot ${color}`} />
-                <span>{cat}</span>
-              </div>
-              <div className="skill-pills">
-                {items.map((s) => (
-                  <span
-                    key={s.skill}
-                    className={`pill ${s.proficiency === 'Advanced' ? 'expert' : ''}`}
-                  >
-                    {s.skill}
-                  </span>
-                ))}
-              </div>
+      <div className="db-table skills-table fade-in">
+        <div className="db-table-header">
+          <span>▶</span>
+          <span className="tbl-name">skills</span>
+          <span style={{ marginLeft: 'auto' }}>{skills.length} rows</span>
+        </div>
+        <div className="db-table-cols">
+          <div className="col-name">skill</div>
+          <div className="col-name">category</div>
+          <div className="col-name" style={{ textAlign: 'right' }}>proficiency</div>
+        </div>
+
+        {skills.map((s, i) => (
+          <div key={i} className="db-row">
+            <div className="sk-name">{s.skill}</div>
+            <div className="sk-category">{s.category}</div>
+            <div style={{ textAlign: 'right' }}>
+              <span className={`sk-badge ${s.proficiency === 'Advanced' ? 'advanced' : ''}`}>
+                {s.proficiency}
+              </span>
             </div>
-          )
-        })}
+          </div>
+        ))}
       </div>
     </section>
   )

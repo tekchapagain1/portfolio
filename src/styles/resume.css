@@ -323,9 +323,9 @@ html.theme--light .query-block {
 .cursor-blink {
   display: inline-block;
   width: 8px;
-  height: 14px;
+  height: 1.1em;
   background: var(--color-prompt);
-  vertical-align: middle;
+  align-self: center;
   animation: blink 1s step-end infinite;
 }
 
@@ -1169,15 +1169,6 @@ html.theme--light .run-btn {
     height: 48px;
   }
 
-  .skill-pills {
-    padding: var(--space-3);
-  }
-
-  .pill {
-    padding: 6px var(--space-3);
-    min-height: 34px;
-  }
-
   .chip {
     padding: 8px 12px;
     min-height: 36px;
@@ -1270,22 +1261,6 @@ html.theme--light .run-btn {
 @media (max-width: 480px) {
   .resume-section {
     padding: 32px 0;
-  }
-
-  .pill {
-    padding: 4px 10px;
-    min-height: 28px;
-    font-size: 11px;
-    display: inline-flex;
-    align-items: center;
-  }
-
-  .skill-pills {
-    padding: var(--space-2);
-  }
-
-  .skill-cat-header {
-    padding: var(--space-2) var(--space-3);
   }
 
   .query-result-block .output-table {

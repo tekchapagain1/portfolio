@@ -1,7 +1,7 @@
 import { memo, useContext } from 'react'
 import { ViewContext } from '../utils/ViewContext'
 
-function Nav({ onToggle }) {
+function Nav() {
   const { standardView } = useContext(ViewContext)
 
   return (
@@ -27,16 +27,6 @@ function Nav({ onToggle }) {
           {!standardView && <li><a href="#query">QUERY</a></li>}
           <li><a href="#contact">CONTACT</a></li>
         </ul>
-        <button
-          className="nav-view-toggle"
-          onClick={onToggle}
-          aria-label={standardView ? 'Switch to technical (SQL terminal) view' : 'Switch to standard view'}
-        >
-          <span className="nav-view-toggle-icon" aria-hidden="true">
-            {standardView ? '◈' : '≡'}
-          </span>
-          <span>{standardView ? 'Standard' : 'Technical'}</span>
-        </button>
       </div>
       <div className="resume-statusbar" role="status">
         {standardView ? (

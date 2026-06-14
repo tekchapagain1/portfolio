@@ -35,7 +35,6 @@ export default function Hero() {
 
   const expertSkills = skills.filter((s) => s.proficiency === 'Advanced').length
   const pipelineCount = experience.length
-
   const initials = profile.name.split(' ')[0][0] + '.' + profile.name.split(' ').slice(-1)[0][0]
 
   return (
@@ -174,19 +173,19 @@ export default function Hero() {
         <div className="resume-hero-stats fade-in" style={{ transitionDelay: '0.2s' }}>
           <div className="stat-cell">
             <div className="stat-val">{years}+</div>
-            <div className="stat-lbl">YRS EXPERIENCE</div>
+            <div className="stat-lbl">Years</div>
           </div>
           <div className="stat-cell">
-            <div className="stat-val">{pipelineCount}</div>
-            <div className="stat-lbl">POSITIONS HELD</div>
+            <div className="stat-val">25+</div>
+            <div className="stat-lbl">ETL Pipelines</div>
           </div>
           <div className="stat-cell">
-            <div className="stat-val">{expertSkills}</div>
-            <div className="stat-lbl">EXPERT SKILLS</div>
+            <div className="stat-val">40+</div>
+            <div className="stat-lbl">Reports Automated</div>
           </div>
           <div className="stat-cell">
-            <div className="stat-val">{initials}</div>
-            <div className="stat-lbl">CERTIFICATIONS</div>
+            <div className="stat-val">✓</div>
+            <div className="stat-lbl">Remote Ready</div>
           </div>
         </div>
         )}

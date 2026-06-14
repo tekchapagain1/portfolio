@@ -17,7 +17,7 @@ const ContactSection = lazy(() => import('./components/ContactSection'))
 
 const fallback = <div className="resume-section"><div className="container" style={{ textAlign: 'center', color: 'var(--text-muted)' }}>-- Loading...</div></div>
 
-function StandardHTML({ onToggle }) {
+function StandardHTML() {
   const iframeRef = useRef(null)
 
   function onLoad() {
@@ -29,9 +29,6 @@ function StandardHTML({ onToggle }) {
 
   return (
     <div className="standard-html">
-      <button className="std-toggle" onClick={onToggle} aria-label="Switch to technical view">
-        ≡ Technical
-      </button>
       <iframe ref={iframeRef} src="/main.html" title="Resume" className="std-iframe" onLoad={onLoad} />
     </div>
   )
@@ -69,7 +66,7 @@ export default function App() {
       <SolarToggle enabled={solarEnabled} onToggle={toggleSolar} standardView={standardView} onToggleView={toggleStandard} />
         <ViewContext.Provider value={{ standardView }}>
           {standardView ? (
-            <StandardHTML onToggle={toggleStandard} />
+            <StandardHTML />
           ) : (
             <>
               <Nav onToggle={toggleStandard} />
